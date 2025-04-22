@@ -1,5 +1,5 @@
 import express, { NextFunction, Request, Response } from "express";
-import { taskRouter } from "./routes/task.route";
+import { taskRouter } from "./modules/task/task.route";
 import { healthcheckRouter } from "./routes/health-check.route";
 import { loggerMiddleware } from "./middlewares/logger.middleware";
 import { errorHandler } from "./middlewares/error.handler.middleware";

@@ -4,8 +4,9 @@ import {
   deleteTask,
   getTaskById,
   listAllTasks,
+  toggleCompleteTask,
   updateTask,
-} from "../controller/task.controller";
+} from "./task.controller";
 
 export const taskRouter = Router();
 
@@ -14,3 +15,4 @@ taskRouter.get("/tasks", listAllTasks);
 taskRouter.get("/tasks/:id", getTaskById);
 taskRouter.put("/tasks/:id", updateTask);
 taskRouter.delete("/tasks/:id", deleteTask);
+taskRouter.patch("/tasks/:id", toggleCompleteTask);

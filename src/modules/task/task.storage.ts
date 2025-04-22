@@ -1,13 +1,6 @@
 import { randomUUID } from "node:crypto";
-
-export type Task = {
-  id: string;
-  title: string;
-  description: string;
-  completed: boolean;
-  createdAt: Date;
-  updatedAt: Date;
-};
+import { Task } from "./task.types";
+import { createTaskObject } from "./task.model";
 
 export class TaskStorage {
   #tasks = new Map<string, Task>();
@@ -29,18 +22,12 @@ export class TaskStorage {
   }
 
   async createTask(title: string, description?: string): Promise<Task> {
-    const id = randomUUID();
-
-    const task: Task = {
-      id,
+    const task = createTaskObject({
       title,
-      description: description || "",
-      completed: false,
-      createdAt: new Date(),
-      updatedAt: new Date(),
-    };
+      description,
+    });
 
-    this.#tasks.set(id, task);
+    this.#tasks.set(task.id, task);
 
     return task;
   }
@@ -49,38 +36,47 @@ export class TaskStorage {
     return this.#tasks.get(id);
   }
 
-  async deleteTask(id: string): Promise<void> {
+  async deleteTask(id: string): Promise<boolean> {
+    const taskExists = this.#tasks.get(id);
+
+    if (!taskExists) return false;
+
     this.#tasks.delete(id);
+    return true;
   }
 
   async updateTask(
     id: string,
     title: string,
-    description: string
-  ): Promise<Task | undefined> {
+    description?: string
+  ): Promise<boolean> {
     const task = this.#tasks.get(id);
 
-    if (!task) {
-      return undefined;
-    }
+    if (!task) return false;
 
-    task.title = title;
-    task.description = description;
-    task.updatedAt = new Date();
-    this.#tasks.set(id, task);
+    const descriptionValue = description || task.description || "";
 
-    return task;
+    const updatedTask: Task = {
+      ...task,
+      title,
+      description: descriptionValue,
+      updatedAt: new Date(),
+    };
+
+    this.#tasks.set(id, updatedTask);
+
+    return true;
   }
 
-  async toggleCompleteTask(id: string, completed: boolean) {
+  async toggleCompleteTask(id: string, completed: boolean): Promise<boolean> {
     const task = this.#tasks.get(id);
 
     if (!task) {
-      return undefined;
+      return false;
     }
 
     task.completed = completed;
-
     this.#tasks.set(id, task);
+    return true;
   }
 }
