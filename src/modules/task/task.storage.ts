@@ -1,82 +1,83 @@
 import { randomUUID } from "node:crypto";
 import { Task } from "./task.types";
 import { createTaskObject } from "./task.model";
+import { prisma } from "../../lib/prisma";
+import { Prisma } from "@prisma/client";
+import { UpdateTaskInput } from "./task.schema";
 
 export class TaskStorage {
   #tasks = new Map<string, Task>();
 
-  async listAllTasks(): Promise<Task[]> {
-    return Array.from(this.#tasks.entries()).map((task) => {
-      const id = task[0];
-      const taskData = task[1];
+  async listAllTasks(): Promise<Prisma.TaskCreateInput[]> {
+    const tasks = await prisma.task.findMany();
 
-      return {
-        id,
-        title: taskData.title,
-        description: taskData.description,
-        completed: taskData.completed,
-        createdAt: taskData.createdAt,
-        updatedAt: taskData.updatedAt,
-      };
-    });
+    return tasks;
   }
 
-  async createTask(title: string, description?: string): Promise<Task> {
-    const task = createTaskObject({
-      title,
-      description,
+  async createTask(
+    title: string,
+    description?: string
+  ): Promise<Prisma.TaskCreateInput> {
+    const task = prisma.task.create({
+      data: {
+        title,
+        description,
+      },
     });
-
-    this.#tasks.set(task.id, task);
 
     return task;
   }
 
-  async getTaskById(id: string): Promise<Task | undefined> {
-    return this.#tasks.get(id);
+  async getTaskById(id: string): Promise<Prisma.TaskCreateInput | null> {
+    const task = await prisma.task.findUnique({
+      where: {
+        id,
+      },
+    });
+
+    return task;
   }
 
   async deleteTask(id: string): Promise<boolean> {
-    const taskExists = this.#tasks.get(id);
+    const taskExists = await prisma.task.delete({
+      where: {
+        id,
+      },
+    });
 
     if (!taskExists) return false;
 
-    this.#tasks.delete(id);
     return true;
   }
 
   async updateTask(
     id: string,
-    title: string,
-    description?: string
+    { title, description, completed }: UpdateTaskInput
   ): Promise<boolean> {
-    const task = this.#tasks.get(id);
+    const taskData = await prisma.task.findUnique({
+      where: {
+        id,
+      },
+    });
+
+    const descriptionValue =
+      typeof description === "string" ? description : taskData?.description;
+    const completedValue =
+      completed !== undefined ? completed : taskData?.completed;
+
+    const task = await prisma.task.update({
+      where: {
+        id,
+      },
+      data: {
+        title,
+        description: descriptionValue,
+        completed: completedValue,
+      },
+    });
 
     if (!task) return false;
 
-    const descriptionValue = description || task.description || "";
-
-    const updatedTask: Task = {
-      ...task,
-      title,
-      description: descriptionValue,
-      updatedAt: new Date(),
-    };
-
-    this.#tasks.set(id, updatedTask);
-
-    return true;
-  }
-
-  async toggleCompleteTask(id: string, completed: boolean): Promise<boolean> {
-    const task = this.#tasks.get(id);
-
-    if (!task) {
-      return false;
-    }
-
-    task.completed = completed;
-    this.#tasks.set(id, task);
     return true;
   }
 }

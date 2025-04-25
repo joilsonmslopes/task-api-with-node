@@ -52,26 +52,13 @@ export async function updateTask(
 ) {
   try {
     const { id } = getParamsSchema.parse(req.params);
-    const { title, description } = updateTaskSchema.parse(req.body);
+    const { title, description, completed } = updateTaskSchema.parse(req.body);
 
-    await taskService.updateTask(id, title, description);
-
-    res.status(204).send();
-  } catch (error) {
-    next(error);
-  }
-}
-
-export async function toggleCompleteTask(
-  req: Request,
-  res: Response,
-  next: NextFunction
-) {
-  try {
-    const { id } = getParamsSchema.parse(req.params);
-    const { completed } = toggleCompleteTaskSchema.parse(req.body);
-
-    await taskService.toggleCompleteTask(id, completed);
+    await taskService.updateTask(id, {
+      title,
+      description,
+      completed,
+    });
 
     res.status(204).send();
   } catch (error) {

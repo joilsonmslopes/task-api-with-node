@@ -1,14 +1,12 @@
 import { AppError } from "../../errors/AppError";
+import { UpdateTaskInput } from "./task.schema";
 import { TaskStorage } from "./task.storage";
-import { CreateTaskInput, getParamsSchema } from "./task.schema";
-import { taskService } from "../../config/inject";
-import { ZodError } from "zod";
-import { Task } from "./task.types";
+import { Prisma } from "@prisma/client";
 
 export class TaskService {
   constructor(private db: TaskStorage) {}
 
-  async listAllTasks(): Promise<CreateTaskInput[]> {
+  async listAllTasks(): Promise<Prisma.TaskCreateInput[]> {
     const tasks = await this.db.listAllTasks();
 
     return tasks;
@@ -17,13 +15,13 @@ export class TaskService {
   async createTask(
     title: string,
     description?: string
-  ): Promise<CreateTaskInput> {
+  ): Promise<Prisma.TaskCreateInput> {
     const task = await this.db.createTask(title, description);
 
     return task;
   }
 
-  async getTaskById(id: string): Promise<Task> {
+  async getTaskById(id: string): Promise<Prisma.TaskCreateInput> {
     const task = await this.db.getTaskById(id);
 
     if (!task) {
@@ -33,21 +31,17 @@ export class TaskService {
     return task;
   }
 
-  async updateTask(id: string, title: string, description?: string) {
-    const updatedTask = await this.db.updateTask(id, title, description);
+  async updateTask(
+    id: string,
+    { title, description, completed }: UpdateTaskInput
+  ) {
+    const updatedTask = await this.db.updateTask(id, {
+      title,
+      description,
+      completed,
+    });
 
     if (!updatedTask) throw new AppError("Tarefa não encontrada", 404);
-  }
-
-  async toggleCompleteTask(id: string, completed: boolean) {
-    const updateCompleteTaskStatus = await this.db.toggleCompleteTask(
-      id,
-      completed
-    );
-
-    if (!updateCompleteTaskStatus) {
-      throw new AppError("Tarefa não encontrada", 404);
-    }
   }
 
   async deleteTask(id: string) {
