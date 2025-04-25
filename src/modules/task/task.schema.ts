@@ -9,14 +9,13 @@ export const createTaskSchema = z.object({
   description: z.string().optional(),
 });
 
-export const updateTaskSchema = z.object({
-  title: z
-    .string({
-      required_error: "Título é obrigatório",
-    })
-    .min(3, "O Título deve conter pelo menos 3 caracteres."),
-  description: z.string().optional(),
-});
+export const updateTaskSchema = z
+  .object({
+    title: z.string().min(3, "O Título deve conter pelo menos 3 caracteres."),
+    description: z.string().optional(),
+    completed: z.boolean().optional(),
+  })
+  .partial();
 
 export const getParamsSchema = z.object({
   id: z.string().uuid("ID inválido"),

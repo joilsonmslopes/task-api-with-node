@@ -4,11 +4,13 @@
     "module": "commonjs",
     "outDir": "./dist",
     "rootDir": "./src",
+    "moduleResolution": "node",
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
+    "resolveJsonModule": true,
     "forceConsistentCasingInFileNames": true
   },
-  "include": ["src/**/*"],
+  "include": ["src/**/*", "prisma"],
   "exclude": ["node_modules"]
 }

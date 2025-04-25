@@ -4,7 +4,6 @@ import {
   deleteTask,
   getTaskById,
   listAllTasks,
-  toggleCompleteTask,
   updateTask,
 } from "./task.controller";
 
@@ -15,4 +14,3 @@ taskRouter.get("/tasks", listAllTasks);
 taskRouter.get("/tasks/:id", getTaskById);
 taskRouter.put("/tasks/:id", updateTask);
 taskRouter.delete("/tasks/:id", deleteTask);
-taskRouter.patch("/tasks/:id/complete", toggleCompleteTask);
