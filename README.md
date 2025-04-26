@@ -24,8 +24,9 @@ src/
 - TypeScript
 - Zod (validação de dados)
 - Express
-- Injeção de dependência manual
-- Armazenamento em memória (substituível por banco real)
+- Tsyringe
+- Prisma ORM
+- PostgreSQL ([Neon](https://www.neon.tech))
 - Middlewares customizados
 
 ---
@@ -133,8 +134,6 @@ A API utiliza um middleware global de tratamento de erros, retornando mensagens 
 ```
 
 ## 📌 Melhorias Futuras
-
-Integração com banco de dados real (PostgreSQL, MongoDB, etc.)
 
 Testes automatizados (Jest, Supertest)
 
