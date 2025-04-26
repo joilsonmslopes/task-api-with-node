@@ -6,78 +6,78 @@ import {
   toggleCompleteTaskSchema,
   updateTaskSchema,
 } from "./task.schema";
-import { taskService } from "../../config/inject";
+import { container, inject, injectable } from "tsyringe";
+import { TaskService } from "./task.service";
 
-export async function createTask(
-  req: Request,
-  res: Response,
-  next: NextFunction
-) {
-  try {
-    const { title, description } = createTaskSchema.parse(req.body);
+@injectable()
+export class TaskControler {
+  constructor(
+    @inject("TaskService")
+    private taskService: TaskService
+  ) {}
 
-    const task = await taskService.createTask(title, description);
-    res.status(201).json(task);
-  } catch (error) {
-    next(error);
+  async list(req: Request, res: Response, next: NextFunction) {
+    try {
+      const tasks = await this.taskService.list();
+
+      res.status(200).json(tasks);
+    } catch (error) {
+      next(error);
+    }
   }
-}
 
-export async function listAllTasks(req: Request, res: Response) {
-  const tasks = await taskService.listAllTasks();
+  async create(req: Request, res: Response, next: NextFunction) {
+    try {
+      const { title, description } = createTaskSchema.parse(req.body);
 
-  res.status(200).json(tasks);
-}
+      const task = await this.taskService.createTask(title, description);
 
-export async function getTaskById(
-  req: Request,
-  res: Response,
-  next: NextFunction
-) {
-  try {
-    const { id } = getParamsSchema.parse(req.params);
-
-    const task = await taskService.getTaskById(id);
-
-    res.status(200).json(task);
-  } catch (error) {
-    next(error);
+      res.status(201).json(task);
+    } catch (error) {
+      next(error);
+    }
   }
-}
 
-export async function updateTask(
-  req: Request,
-  res: Response,
-  next: NextFunction
-) {
-  try {
-    const { id } = getParamsSchema.parse(req.params);
-    const { title, description, completed } = updateTaskSchema.parse(req.body);
+  async getTaskById(req: Request, res: Response, next: NextFunction) {
+    try {
+      const { id } = getParamsSchema.parse(req.params);
 
-    await taskService.updateTask(id, {
-      title,
-      description,
-      completed,
-    });
+      const task = await this.taskService.getTaskById(id);
 
-    res.status(204).send();
-  } catch (error) {
-    next(error);
+      res.status(200).json(task);
+    } catch (error) {
+      next(error);
+    }
   }
-}
 
-export async function deleteTask(
-  req: Request,
-  res: Response,
-  next: NextFunction
-) {
-  try {
-    const { id } = getParamsSchema.parse(req.params);
+  async updateTask(req: Request, res: Response, next: NextFunction) {
+    try {
+      const { id } = getParamsSchema.parse(req.params);
+      const { title, description, completed } = updateTaskSchema.parse(
+        req.body
+      );
 
-    await taskService.deleteTask(id);
+      const updatedTask = await this.taskService.updateTask(id, {
+        title,
+        description,
+        completed,
+      });
 
-    res.status(204).send();
-  } catch (error) {
-    next(error);
+      res.status(200).json(updatedTask);
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  async deleteTask(req: Request, res: Response, next: NextFunction) {
+    try {
+      const { id } = getParamsSchema.parse(req.params);
+
+      await this.taskService.deleteTask(id);
+
+      res.status(200).send();
+    } catch (error) {
+      next(error);
+    }
   }
 }

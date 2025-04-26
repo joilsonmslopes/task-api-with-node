@@ -1,13 +1,18 @@
 import { AppError } from "../../errors/AppError";
 import { UpdateTaskInput } from "./task.schema";
-import { TaskStorage } from "./task.storage";
 import { Prisma } from "@prisma/client";
+import { inject, injectable } from "tsyringe";
+import { ITaskRepository } from "./task.repository.interface";
 
+@injectable()
 export class TaskService {
-  constructor(private db: TaskStorage) {}
+  constructor(
+    @inject("ITaskRepository")
+    private taskRepository: ITaskRepository
+  ) {}
 
-  async listAllTasks(): Promise<Prisma.TaskCreateInput[]> {
-    const tasks = await this.db.listAllTasks();
+  async list(): Promise<Prisma.TaskCreateInput[]> {
+    const tasks = await this.taskRepository.findMany();
 
     return tasks;
   }
@@ -16,13 +21,13 @@ export class TaskService {
     title: string,
     description?: string
   ): Promise<Prisma.TaskCreateInput> {
-    const task = await this.db.createTask(title, description);
+    const task = await this.taskRepository.create(title, description);
 
     return task;
   }
 
   async getTaskById(id: string): Promise<Prisma.TaskCreateInput> {
-    const task = await this.db.getTaskById(id);
+    const task = await this.taskRepository.findUnique(id);
 
     if (!task) {
       throw new AppError("Tarefa não encontrada", 404);
@@ -35,17 +40,19 @@ export class TaskService {
     id: string,
     { title, description, completed }: UpdateTaskInput
   ) {
-    const updatedTask = await this.db.updateTask(id, {
+    const updatedTask = await this.taskRepository.update(id, {
       title,
       description,
       completed,
     });
 
     if (!updatedTask) throw new AppError("Tarefa não encontrada", 404);
+
+    return updatedTask;
   }
 
   async deleteTask(id: string) {
-    const deleted = await this.db.deleteTask(id);
+    const deleted = await this.taskRepository.delete(id);
 
     if (!deleted) {
       throw new AppError("Tarefa não encontrada", 404);

@@ -1,24 +1,22 @@
-import { randomUUID } from "node:crypto";
-import { Task } from "./task.types";
-import { createTaskObject } from "./task.model";
 import { prisma } from "../../lib/prisma";
-import { Prisma } from "@prisma/client";
+import { Prisma, PrismaClient } from "@prisma/client";
 import { UpdateTaskInput } from "./task.schema";
+import { ITaskRepository } from "./task.repository.interface";
+import { injectable } from "tsyringe";
 
-export class TaskStorage {
-  #tasks = new Map<string, Task>();
-
-  async listAllTasks(): Promise<Prisma.TaskCreateInput[]> {
+@injectable()
+export class TaskRepository implements ITaskRepository {
+  async findMany(): Promise<Prisma.TaskCreateInput[]> {
     const tasks = await prisma.task.findMany();
 
     return tasks;
   }
 
-  async createTask(
+  async create(
     title: string,
     description?: string
   ): Promise<Prisma.TaskCreateInput> {
-    const task = prisma.task.create({
+    const task = await prisma.task.create({
       data: {
         title,
         description,
@@ -28,7 +26,7 @@ export class TaskStorage {
     return task;
   }
 
-  async getTaskById(id: string): Promise<Prisma.TaskCreateInput | null> {
+  async findUnique(id: string): Promise<Prisma.TaskCreateInput | null> {
     const task = await prisma.task.findUnique({
       where: {
         id,
@@ -38,22 +36,10 @@ export class TaskStorage {
     return task;
   }
 
-  async deleteTask(id: string): Promise<boolean> {
-    const taskExists = await prisma.task.delete({
-      where: {
-        id,
-      },
-    });
-
-    if (!taskExists) return false;
-
-    return true;
-  }
-
-  async updateTask(
+  async update(
     id: string,
     { title, description, completed }: UpdateTaskInput
-  ): Promise<boolean> {
+  ): Promise<Prisma.TaskCreateInput | false> {
     const taskData = await prisma.task.findUnique({
       where: {
         id,
@@ -77,6 +63,18 @@ export class TaskStorage {
     });
 
     if (!task) return false;
+
+    return task;
+  }
+
+  async delete(id: string): Promise<boolean> {
+    const taskExists = await prisma.task.delete({
+      where: {
+        id,
+      },
+    });
+
+    if (!taskExists) return false;
 
     return true;
   }

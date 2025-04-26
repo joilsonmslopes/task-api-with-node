@@ -1,16 +1,12 @@
 import { Router } from "express";
-import {
-  createTask,
-  deleteTask,
-  getTaskById,
-  listAllTasks,
-  updateTask,
-} from "./task.controller";
+import { TaskControler } from "./task.controller";
+import { container } from "tsyringe";
 
 export const taskRouter = Router();
+const taskController = container.resolve(TaskControler);
 
-taskRouter.post("/tasks", createTask);
-taskRouter.get("/tasks", listAllTasks);
-taskRouter.get("/tasks/:id", getTaskById);
-taskRouter.put("/tasks/:id", updateTask);
-taskRouter.delete("/tasks/:id", deleteTask);
+taskRouter.post("/tasks", taskController.create.bind(taskController));
+taskRouter.get("/tasks", taskController.list.bind(taskController));
+taskRouter.get("/tasks/:id", taskController.getTaskById.bind(taskController));
+taskRouter.put("/tasks/:id", taskController.updateTask.bind(taskController));
+taskRouter.delete("/tasks/:id", taskController.deleteTask.bind(taskController));
