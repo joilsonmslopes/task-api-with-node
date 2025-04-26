@@ -1,4 +1,6 @@
-import express, { NextFunction, Request, Response } from "express";
+import "reflect-metadata";
+import "./config/inject";
+import express from "express";
 import { taskRouter } from "./modules/task/task.route";
 import { healthcheckRouter } from "./routes/health-check.route";
 import { loggerMiddleware } from "./middlewares/logger.middleware";
