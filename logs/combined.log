@@ -1,0 +1,144 @@
+2025-04-26T22:51:57.887Z [INFO]: Server is running on port: 3333
+2025-04-26T22:53:52.018Z [INFO]: GET /api/tasks
+2025-04-26T23:00:03.056Z [INFO]: Server is running on port: 3333
+2025-04-26T23:04:22.664Z [INFO]: Server is running on port: 3333
+2025-04-26T23:04:45.857Z [INFO]: Server is running on port: 3333
+2025-04-26T23:06:53.197Z [INFO]: Server is running on port: 3333
+2025-04-26T23:18:08.313Z [INFO]: Server is running on port: 3333
+2025-04-26T23:18:48.970Z [INFO]: Server is running on port: 3333
+2025-04-26T23:19:26.362Z [INFO]: Server is running on port: 3333
+2025-04-26T23:20:04.618Z [INFO]: Server is running on port: 3333
+2025-04-26T23:20:34.231Z [INFO]: Server is running on port: 3333
+2025-04-26T23:25:27.414Z [INFO]: Server is running on port: 3333
+2025-04-26T23:26:21.575Z [INFO]: Server is running on port: 3333
+2025-04-26T23:26:29.919Z [INFO]: Server is running on port: 3333
+2025-04-26T23:26:33.127Z [INFO]: Server is running on port: 3333
+2025-04-26T23:28:51.926Z [INFO]: Server is running on port: 3333
+2025-04-26T23:29:17.674Z [INFO]: Server is running on port: 3333
+2025-04-26T23:29:34.164Z [INFO]: GET /api/tasks
+2025-04-26T23:29:50.523Z [INFO]: POST /api/tasks
+2025-04-26T23:38:19.483Z [INFO]: Server is running on port: 3333
+2025-04-26T23:38:21.484Z [INFO]: POST /api/tasks
+2025-04-26T23:38:35.844Z [INFO]: Server is running on port: 3333
+2025-04-26T23:38:44.872Z [INFO]: GET /api/tasks
+2025-04-26T23:38:56.183Z [INFO]: POST /api/tasks
+2025-04-26T23:40:26.560Z [INFO]: Server is running on port: 3333
+2025-04-26T23:40:48.818Z [INFO]: POST /api/tasks
+2025-04-26T23:41:00.879Z [INFO]: POST /api/tasks
+2025-04-26T23:41:32.808Z [INFO]: Server is running on port: 3333
+2025-04-26T23:41:35.022Z [INFO]: POST /api/tasks
+2025-04-26T23:42:36.078Z [INFO]: Server is running on port: 3333
+2025-04-26T23:42:39.764Z [INFO]: POST /api/tasks
+2025-04-26T23:43:00.852Z [INFO]: Server is running on port: 3333
+2025-04-26T23:43:09.496Z [INFO]: POST /api/tasks
+2025-04-26T23:43:56.221Z [INFO]: Server is running on port: 3333
+2025-04-26T23:43:57.652Z [INFO]: POST /api/tasks
+2025-04-26T23:45:08.070Z [INFO]: Server is running on port: 3333
+2025-04-26T23:45:10.093Z [INFO]: POST /api/tasks
+2025-04-26T23:45:28.140Z [INFO]: Server is running on port: 3333
+2025-04-26T23:45:28.660Z [INFO]: POST /api/tasks
+2025-04-26T23:46:07.549Z [INFO]: Server is running on port: 3333
+2025-04-26T23:46:09.227Z [INFO]: POST /api/tasks
+2025-04-26T23:46:28.569Z [INFO]: Server is running on port: 3333
+2025-04-26T23:46:30.825Z [INFO]: POST /api/tasks
+2025-04-26T23:47:05.463Z [INFO]: Server is running on port: 3333
+2025-04-26T23:47:07.738Z [INFO]: POST /api/tasks
+2025-04-26T23:47:55.822Z [INFO]: Server is running on port: 3333
+2025-04-26T23:47:56.854Z [INFO]: POST /api/tasks
+2025-04-26T23:48:43.869Z [INFO]: Server is running on port: 3333
+2025-04-26T23:48:44.422Z [INFO]: POST /api/tasks
+2025-04-26T23:49:07.319Z [INFO]: Server is running on port: 3333
+2025-04-26T23:49:08.750Z [INFO]: POST /api/tasks
+2025-04-26T23:49:18.415Z [INFO]: Server is running on port: 3333
+2025-04-26T23:49:26.081Z [INFO]: POST /api/tasks
+2025-04-26T23:49:26.091Z [ERROR]: ZodError: [
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "undefined",
+    "path": [
+      "title"
+    ],
+    "message": "Título é obrigatório."
+  }
+]
+    at Object.get error [as error] (C:\dev\node\task-api\node_modules\zod\lib\types.js:55:31)
+    at ZodObject.parse (C:\dev\node\task-api\node_modules\zod\lib\types.js:131:22)
+    at TaskControler.create (C:\dev\node\task-api\src\modules\task\task.controller.ts:31:55)
+    at Layer.handleRequest (C:\dev\node\task-api\node_modules\router\lib\layer.js:152:17)
+    at next (C:\dev\node\task-api\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (C:\dev\node\task-api\node_modules\router\lib\route.js:117:3)
+    at handle (C:\dev\node\task-api\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (C:\dev\node\task-api\node_modules\router\lib\layer.js:152:17)
+    at C:\dev\node\task-api\node_modules\router\index.js:295:15
+    at processParams (C:\dev\node\task-api\node_modules\router\index.js:582:12)
+2025-04-26T23:49:45.199Z [INFO]: Server is running on port: 3333
+2025-04-26T23:49:52.214Z [INFO]: Server is running on port: 3333
+2025-04-26T23:49:53.630Z [INFO]: POST /api/tasks
+2025-04-26T23:49:53.641Z [ERROR]: ZodError: [
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "undefined",
+    "path": [
+      "title"
+    ],
+    "message": "Título é obrigatório."
+  }
+]
+    at Object.get error [as error] (C:\dev\node\task-api\node_modules\zod\lib\types.js:55:31)
+    at ZodObject.parse (C:\dev\node\task-api\node_modules\zod\lib\types.js:131:22)
+    at TaskControler.create (C:\dev\node\task-api\src\modules\task\task.controller.ts:31:55)
+    at Layer.handleRequest (C:\dev\node\task-api\node_modules\router\lib\layer.js:152:17)
+    at next (C:\dev\node\task-api\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (C:\dev\node\task-api\node_modules\router\lib\route.js:117:3)
+    at handle (C:\dev\node\task-api\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (C:\dev\node\task-api\node_modules\router\lib\layer.js:152:17)
+    at C:\dev\node\task-api\node_modules\router\index.js:295:15
+    at processParams (C:\dev\node\task-api\node_modules\router\index.js:582:12)
+2025-04-26T23:51:24.593Z [INFO]: Server is running on port: 3333
+2025-04-26T23:51:33.228Z [INFO]: Server is running on port: 3333
+2025-04-26T23:51:33.768Z [INFO]: POST /api/tasks
+2025-04-26T23:51:33.780Z [ERROR]: ZodError: [
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "undefined",
+    "path": [
+      "title"
+    ],
+    "message": "Título é obrigatório."
+  }
+]
+    at Object.get error [as error] (C:\dev\node\task-api\node_modules\zod\lib\types.js:55:31)
+    at ZodObject.parse (C:\dev\node\task-api\node_modules\zod\lib\types.js:131:22)
+    at TaskControler.create (C:\dev\node\task-api\src\modules\task\task.controller.ts:31:55)
+    at Layer.handleRequest (C:\dev\node\task-api\node_modules\router\lib\layer.js:152:17)
+    at next (C:\dev\node\task-api\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (C:\dev\node\task-api\node_modules\router\lib\route.js:117:3)
+    at handle (C:\dev\node\task-api\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (C:\dev\node\task-api\node_modules\router\lib\layer.js:152:17)
+    at C:\dev\node\task-api\node_modules\router\index.js:295:15
+    at processParams (C:\dev\node\task-api\node_modules\router\index.js:582:12)
+2025-04-26T23:56:26.824Z [INFO]: Server is running on port: 3333
+2025-04-26T23:56:40.381Z [INFO]: POST /api/tasks
+2025-04-26T23:56:40.394Z [ERROR]: [object Object]
+{"level":"info","message":"Server is running on port: 3333","timestamp":"2025-04-26T23:58:17.159Z"}
+{"level":"info","message":"POST /api/tasks","timestamp":"2025-04-26T23:58:23.355Z"}
+{"level":"error","message":{"ip":"::1","issues":[{"code":"invalid_type","message":"Título é obrigatório.","path":"title"}],"method":"POST","name":"ZodError","url":"/api/tasks"},"timestamp":"2025-04-26T23:58:23.367Z"}
+2025-04-26T23:58:53.793Z [INFO]: Server is running on port: 3333
+2025-04-26T23:58:54.155Z [INFO]: POST /api/tasks
+2025-04-26T23:58:54.167Z [ERROR]: [object Object]
+{"level":"info","message":"Server is running on port: 3333","timestamp":"2025-04-27T00:00:05.307Z"}
+{"level":"info","message":"POST /api/tasks","timestamp":"2025-04-27T00:00:06.713Z"}
+{"level":"error","message":{"ip":"::1","issues":[{"code":"invalid_type","message":"Título é obrigatório.","path":"title"}],"method":"POST","name":"ZodError","url":"/api/tasks"},"timestamp":"2025-04-27T00:00:06.726Z"}
+{"level":"info","message":"Server is running on port: 3333","timestamp":"2025-04-27T00:00:39.630Z"}
+{"level":"info","message":"POST /api/tasks","timestamp":"2025-04-27T00:00:44.363Z"}
+{"level":"error","message":{"ip":"::1","issues":[{"code":"invalid_type","message":"Título é obrigatório.","path":"title"}],"method":"POST","name":"ZodError","url":"/api/tasks"},"timestamp":"2025-04-27T00:00:44.374Z"}
+2025-04-27T00:01:02.721Z [INFO]: Server is running on port: 3333
+2025-04-27T00:01:30.384Z [INFO]: Server is running on port: 3333
+2025-04-27T00:01:31.563Z [INFO]: POST /api/tasks
+2025-04-27T00:01:31.575Z [ERROR]: {"name":"ZodError","issues":[{"path":"title","message":"Título é obrigatório.","code":"invalid_type"}],"url":"/api/tasks","method":"POST","ip":"::1"}
+2025-04-27T00:02:12.002Z [INFO]: Server is running on port: 3333
+2025-04-27T00:02:24.875Z [INFO]: POST /api/tasks
+2025-04-27T00:02:24.893Z [ERROR]: {"name":"ZodError","issues":[{"path":"title","message":"O Título deve conter pelo menos 3 caracteres.","code":"too_small"}],"url":"/api/tasks","method":"POST","ip":"::1"}

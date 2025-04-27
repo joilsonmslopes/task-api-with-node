@@ -1,16 +1,16 @@
 import { NextFunction, Request, Response } from "express";
+import { logger } from "../utils/logger";
 
 export function loggerMiddleware(
   req: Request,
   res: Response,
   next: NextFunction
 ) {
-  const logger = {
-    date: new Date(),
+  const loggerData = {
     method: req.method,
     route: req.path,
   };
 
-  console.log(logger);
+  logger.info(`${loggerData.method} ${loggerData.route}`);
   next();
 }

@@ -1,0 +1,70 @@
+2025-04-26T23:49:26.091Z [ERROR]: ZodError: [
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "undefined",
+    "path": [
+      "title"
+    ],
+    "message": "Título é obrigatório."
+  }
+]
+    at Object.get error [as error] (C:\dev\node\task-api\node_modules\zod\lib\types.js:55:31)
+    at ZodObject.parse (C:\dev\node\task-api\node_modules\zod\lib\types.js:131:22)
+    at TaskControler.create (C:\dev\node\task-api\src\modules\task\task.controller.ts:31:55)
+    at Layer.handleRequest (C:\dev\node\task-api\node_modules\router\lib\layer.js:152:17)
+    at next (C:\dev\node\task-api\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (C:\dev\node\task-api\node_modules\router\lib\route.js:117:3)
+    at handle (C:\dev\node\task-api\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (C:\dev\node\task-api\node_modules\router\lib\layer.js:152:17)
+    at C:\dev\node\task-api\node_modules\router\index.js:295:15
+    at processParams (C:\dev\node\task-api\node_modules\router\index.js:582:12)
+2025-04-26T23:49:53.641Z [ERROR]: ZodError: [
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "undefined",
+    "path": [
+      "title"
+    ],
+    "message": "Título é obrigatório."
+  }
+]
+    at Object.get error [as error] (C:\dev\node\task-api\node_modules\zod\lib\types.js:55:31)
+    at ZodObject.parse (C:\dev\node\task-api\node_modules\zod\lib\types.js:131:22)
+    at TaskControler.create (C:\dev\node\task-api\src\modules\task\task.controller.ts:31:55)
+    at Layer.handleRequest (C:\dev\node\task-api\node_modules\router\lib\layer.js:152:17)
+    at next (C:\dev\node\task-api\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (C:\dev\node\task-api\node_modules\router\lib\route.js:117:3)
+    at handle (C:\dev\node\task-api\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (C:\dev\node\task-api\node_modules\router\lib\layer.js:152:17)
+    at C:\dev\node\task-api\node_modules\router\index.js:295:15
+    at processParams (C:\dev\node\task-api\node_modules\router\index.js:582:12)
+2025-04-26T23:51:33.780Z [ERROR]: ZodError: [
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "undefined",
+    "path": [
+      "title"
+    ],
+    "message": "Título é obrigatório."
+  }
+]
+    at Object.get error [as error] (C:\dev\node\task-api\node_modules\zod\lib\types.js:55:31)
+    at ZodObject.parse (C:\dev\node\task-api\node_modules\zod\lib\types.js:131:22)
+    at TaskControler.create (C:\dev\node\task-api\src\modules\task\task.controller.ts:31:55)
+    at Layer.handleRequest (C:\dev\node\task-api\node_modules\router\lib\layer.js:152:17)
+    at next (C:\dev\node\task-api\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (C:\dev\node\task-api\node_modules\router\lib\route.js:117:3)
+    at handle (C:\dev\node\task-api\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (C:\dev\node\task-api\node_modules\router\lib\layer.js:152:17)
+    at C:\dev\node\task-api\node_modules\router\index.js:295:15
+    at processParams (C:\dev\node\task-api\node_modules\router\index.js:582:12)
+2025-04-26T23:56:40.394Z [ERROR]: [object Object]
+{"level":"error","message":{"ip":"::1","issues":[{"code":"invalid_type","message":"Título é obrigatório.","path":"title"}],"method":"POST","name":"ZodError","url":"/api/tasks"},"timestamp":"2025-04-26T23:58:23.367Z"}
+2025-04-26T23:58:54.167Z [ERROR]: [object Object]
+{"level":"error","message":{"ip":"::1","issues":[{"code":"invalid_type","message":"Título é obrigatório.","path":"title"}],"method":"POST","name":"ZodError","url":"/api/tasks"},"timestamp":"2025-04-27T00:00:06.726Z"}
+{"level":"error","message":{"ip":"::1","issues":[{"code":"invalid_type","message":"Título é obrigatório.","path":"title"}],"method":"POST","name":"ZodError","url":"/api/tasks"},"timestamp":"2025-04-27T00:00:44.374Z"}
+2025-04-27T00:01:31.575Z [ERROR]: {"name":"ZodError","issues":[{"path":"title","message":"Título é obrigatório.","code":"invalid_type"}],"url":"/api/tasks","method":"POST","ip":"::1"}
+2025-04-27T00:02:24.893Z [ERROR]: {"name":"ZodError","issues":[{"path":"title","message":"O Título deve conter pelo menos 3 caracteres.","code":"too_small"}],"url":"/api/tasks","method":"POST","ip":"::1"}
