@@ -1,4 +1,4 @@
-import { prisma } from "../../lib/prisma";
+import { prisma } from "../../shared/lib/prisma";
 import { Prisma, PrismaClient } from "@prisma/client";
 import { UpdateTaskInput } from "./task.schema";
 import { ITaskRepository } from "./task.repository.interface";

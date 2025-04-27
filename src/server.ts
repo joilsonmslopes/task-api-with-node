@@ -1,11 +1,11 @@
 import "reflect-metadata";
-import "./config/inject";
+import "./shared/config/inject";
 import express from "express";
 import { taskRouter } from "./modules/task/task.route";
-import { healthcheckRouter } from "./routes/health-check.route";
-import { loggerMiddleware } from "./middlewares/logger.middleware";
-import { errorHandler } from "./middlewares/error.handler.middleware";
-import { notFoundMiddleware } from "./middlewares/not-found.middleware";
+import { healthcheckRouter } from "./shared/routes/health-check.route";
+import { loggerMiddleware } from "./shared/middlewares/logger.middleware";
+import { errorHandler } from "./shared/middlewares/error.handler.middleware";
+import { notFoundMiddleware } from "./shared/middlewares/not-found.middleware";
 
 export const app = express();
 

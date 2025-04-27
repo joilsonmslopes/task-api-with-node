@@ -34,6 +34,7 @@ export class TaskControler {
 
       res.status(201).json(task);
     } catch (error) {
+      console.log({ error });
       next(error);
     }
   }

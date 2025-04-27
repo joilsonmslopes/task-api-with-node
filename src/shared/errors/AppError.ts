@@ -7,8 +7,6 @@ export class AppError extends Error {
       typeof message === "string" ? message : "Erro de validação";
     super(normalizedMessage);
 
-    console.log(normalizedMessage);
-
     Object.setPrototypeOf(this, new.target.prototype);
     this.name = "AppError";
     this.statusCode = statusCode;

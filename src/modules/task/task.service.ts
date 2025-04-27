@@ -1,4 +1,4 @@
-import { AppError } from "../../errors/AppError";
+import { AppError } from "../../shared/errors/AppError";
 import { UpdateTaskInput } from "./task.schema";
 import { Prisma } from "@prisma/client";
 import { inject, injectable } from "tsyringe";
