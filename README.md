@@ -27,6 +27,7 @@ src/
 - Tsyringe
 - Prisma ORM
 - PostgreSQL ([Neon](https://www.neon.tech))
+- Winston (Logger)
 - Middlewares customizados
 
 ---
